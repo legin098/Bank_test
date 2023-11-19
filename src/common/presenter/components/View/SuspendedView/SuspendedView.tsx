@@ -11,14 +11,11 @@ const SuspendedView = ({
 }: Props) => (
   <Suspense fallback={<PageLoading />}>
     {hasSafeArea ? (
-      <SafeAreaView
-        style={[styles.container, containerStyles && containerStyles]}>
+      <SafeAreaView style={[styles.container, containerStyles]}>
         {children}
       </SafeAreaView>
     ) : (
-      <View style={[styles.container, containerStyles && containerStyles]}>
-        {children}
-      </View>
+      <View style={[styles.container, containerStyles]}>{children}</View>
     )}
   </Suspense>
 );
