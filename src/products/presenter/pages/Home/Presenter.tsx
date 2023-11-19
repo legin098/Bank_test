@@ -6,7 +6,12 @@ import {useGetProducts} from '../../hooks';
 const Presenter = ({navigation}: Props) => {
   const {data: listProducts} = useGetProducts();
 
-  return <Component listProducts={listProducts} />;
+  return (
+    <Component
+      listProducts={listProducts}
+      onNavigation={(screen, params) => navigation.navigate(screen, params)}
+    />
+  );
 };
 
 export default Presenter;

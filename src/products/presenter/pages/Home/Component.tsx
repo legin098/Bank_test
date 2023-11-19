@@ -8,7 +8,7 @@ import {ProductCard} from '../../components';
 import {ProductEntity} from '@src/products/domain/models';
 import {RG_REMOVE_SPACE} from '@src/core/constants';
 
-const Component = ({listProducts = []}: Props) => {
+const Component = ({listProducts = [], onNavigation}: Props) => {
   const [inputSearch, setInputSearch] = useState<string>('');
   const [currentProducts, setCurrentProducts] = useState<ProductEntity[]>([]);
 
@@ -66,7 +66,7 @@ const Component = ({listProducts = []}: Props) => {
                 isFirst && styles.firstProduct,
                 isLatest && styles.latestProduct,
               ]}
-              onPress={() => {}}
+              onPress={() => onNavigation('Detail', {...item})}
             />
           );
         }}
