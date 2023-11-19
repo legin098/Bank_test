@@ -7,7 +7,7 @@ import {COLORS} from '@common/presenter/theme';
 const colors = COLORS.common;
 
 const Button = ({
-  type = 'gray_light',
+  type = 'yellow',
   containerStyles,
   textStyle,
   text = '',
