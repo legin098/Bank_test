@@ -6,6 +6,7 @@ import {ProductStackParamList} from '@common/presenter/models';
 const Stack = createStackNavigator<ProductStackParamList>();
 
 const Home = lazy(() => import('../pages/Home'));
+const Detail = lazy(() => import('../pages/Detail'));
 
 const ProductsNavigation = () => {
   return (
@@ -18,6 +19,13 @@ const ProductsNavigation = () => {
         {props => (
           <SuspendedView hasSafeArea>
             <Home {...props} />
+          </SuspendedView>
+        )}
+      </Stack.Screen>
+      <Stack.Screen name="Detail">
+        {props => (
+          <SuspendedView hasSafeArea>
+            <Detail {...props} />
           </SuspendedView>
         )}
       </Stack.Screen>
