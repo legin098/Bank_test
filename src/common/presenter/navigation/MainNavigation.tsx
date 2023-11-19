@@ -7,6 +7,7 @@ const Stack = createStackNavigator<MainStackParamList>();
 const MainStackNavigation = () => {
   return (
     <Stack.Navigator
+      initialRouteName="Products"
       screenOptions={{
         headerShown: false,
       }}>
