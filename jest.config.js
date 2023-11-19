@@ -10,4 +10,7 @@ module.exports = {
     'jest-runner',
     'node_modules/(?!(jest-)?@?react-native|@react-native-community|@react-navigation)',
   ],
+  globals: {
+    API_URL: 'https://api.developmentEnv.org',
+  },
 };
