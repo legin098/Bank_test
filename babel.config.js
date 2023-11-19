@@ -8,6 +8,7 @@ module.exports = {
         alias: {
           '@src': './src',
           '@common': './src/common',
+          '@core': './src/core',
           '@products': './src/products',
         },
       },
