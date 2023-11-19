@@ -5,6 +5,7 @@ import {ProductAdapter} from '../adapters';
 import {ErrorHandler} from '@src/core/utils';
 import {ProductDto} from '../models';
 import {fakeApiGetProducts} from './__test__/mocks';
+import {API_URL} from '@env';
 
 export class ProductRepositoryImpl implements IProductRepository {
   constructor(readonly http: IHttp) {}
@@ -16,7 +17,7 @@ export class ProductRepositoryImpl implements IProductRepository {
       //   headers: {
       //     authorId: 'randomID',
       //   },
-      //   url: 'http://desarrollo-staffing.pichincha.com/ipf-msa-productosfinancieros/bp/products',
+      //   url: `${API_URL}/bp/products`,
       // });
       const response = await fakeApiGetProducts();
       return ProductAdapter.ProductsDtoToEntity(response);
