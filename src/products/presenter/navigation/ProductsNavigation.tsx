@@ -2,11 +2,10 @@ import React, {lazy} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {SuspendedView} from '@common/presenter/components';
 import {ProductStackParamList} from '@common/presenter/models';
-import {Text, View} from 'react-native';
 
 const Stack = createStackNavigator<ProductStackParamList>();
 
-//const SignIn = lazy(() => import('../pages/SignIn'));
+const Home = lazy(() => import('../pages/Home'));
 
 const ProductsNavigation = () => {
   return (
@@ -17,10 +16,8 @@ const ProductsNavigation = () => {
       }}>
       <Stack.Screen name="Home">
         {props => (
-          <SuspendedView>
-            <View>
-              <Text>Products!</Text>
-            </View>
+          <SuspendedView hasSafeArea>
+            <Home {...props} />
           </SuspendedView>
         )}
       </Stack.Screen>
