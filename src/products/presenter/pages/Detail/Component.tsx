@@ -46,7 +46,7 @@ const Component = ({product = PRODUCT_INITIAL_VALUES}: Props) => {
         </View>
 
         <View style={styles.ctnButtons}>
-          <Button text="Editar" />
+          <Button text="Editar" type="gray_light" />
           <Button
             text="Eliminar"
             type="red"

@@ -10,27 +10,13 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.common.white,
   },
   ctnList: {
+    flexGrow: 1,
+    width,
     marginTop: width * 0.04,
     paddingTop: width * 0.1,
     paddingHorizontal: '6%',
-    paddingBottom: height * 0.1,
+    paddingBottom: height * 0.03,
     borderTopWidth: 1,
     borderTopColor: COLORS.common.gray_light,
-  },
-  ctnHeaderList: {
-    marginBottom: width * 0.09,
-  },
-  firstProduct: {
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-  },
-  latestProduct: {
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
-  },
-  ctnButton: {
-    width: '100%',
-    paddingHorizontal: '6%',
-    marginBottom: width * 0.05,
   },
 });

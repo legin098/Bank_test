@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {KeyboardAwareFlatList} from 'react-native-keyboard-aware-scroll-view';
-import {Header, InputSearch} from '@src/common/presenter/components';
+import {Button, Header, InputSearch} from '@src/common/presenter/components';
 import {PropsComponent as Props} from './models';
 import {styles} from './styles';
 import {ProductCard} from '../../components';
@@ -71,6 +71,9 @@ const Component = ({listProducts = [], onNavigation}: Props) => {
           );
         }}
       />
+      <View style={styles.ctnButton}>
+        <Button text="Agregar" onPress={() => onNavigation('Add')} />
+      </View>
     </View>
   );
 };
