@@ -15,4 +15,7 @@ export class ProductUseCase {
 
   deleteProduct = async (productID: string): Promise<void> =>
     await this.repository.deleteProduct(productID);
+
+  updateProduct = async (data: ProductEntity): Promise<void> =>
+    await this.repository.updateProduct(data);
 }

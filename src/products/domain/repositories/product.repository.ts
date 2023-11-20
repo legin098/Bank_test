@@ -5,4 +5,5 @@ export interface IProductRepository {
   addProduct(product: ProductEntity): Promise<void>;
   verificationProduct(productID: string): Promise<boolean>;
   deleteProduct(productID: string): Promise<void>;
+  updateProduct(product: ProductEntity): Promise<void>;
 }
