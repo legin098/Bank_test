@@ -28,7 +28,7 @@ export class ProductRepositoryImpl implements IProductRepository {
     try {
       const body = ProductAdapter.ProductEntityToDto(product);
 
-      await this.http.request<ProductDto[]>({
+      await this.http.request<ProductDto>({
         method: 'post',
         headers: {
           authorId: '10',
@@ -61,7 +61,7 @@ export class ProductRepositoryImpl implements IProductRepository {
 
   deleteProduct = async (productID: string): Promise<void> => {
     try {
-      await this.http.request({
+      await this.http.request<void>({
         method: 'delete',
         headers: {
           authorId: '10',
@@ -69,6 +69,23 @@ export class ProductRepositoryImpl implements IProductRepository {
         params: {
           id: productID,
         },
+        url: `${API_URL}/bp/products`,
+      });
+    } catch (error) {
+      throw ErrorHandler.fetch(error);
+    }
+  };
+
+  updateProduct = async (product: ProductEntity): Promise<void> => {
+    try {
+      const body = ProductAdapter.ProductEntityToDto(product);
+
+      await this.http.request<ProductDto>({
+        method: 'put',
+        headers: {
+          authorId: '10',
+        },
+        body,
         url: `${API_URL}/bp/products`,
       });
     } catch (error) {
