@@ -12,4 +12,12 @@ export class ProductAdapter {
       dateRelease: convertDateUtcToLocal(product.date_release),
       dateRevision: convertDateUtcToLocal(product.date_revision),
     }));
+  public static ProductEntityToDto = (data: ProductEntity): ProductDto => ({
+    id: data.id,
+    name: data.name,
+    description: data.description,
+    logo: data.picture,
+    date_release: data.dateRelease,
+    date_revision: data.dateRevision,
+  });
 }

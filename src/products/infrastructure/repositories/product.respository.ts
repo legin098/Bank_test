@@ -4,7 +4,6 @@ import {IProductRepository} from '@products/domain/repositories';
 import {ProductAdapter} from '../adapters';
 import {ErrorHandler} from '@src/core/utils';
 import {ProductDto} from '../models';
-import {fakeApiGetProducts} from './__test__/mocks';
 import {API_URL} from '@env';
 
 export class ProductRepositoryImpl implements IProductRepository {
@@ -12,15 +11,49 @@ export class ProductRepositoryImpl implements IProductRepository {
 
   getProducts = async (): Promise<ProductEntity[]> => {
     try {
-      // const response = await this.http.request<ProductDto[]>({
-      //   method: 'get',
-      //   headers: {
-      //     authorId: 'randomID',
-      //   },
-      //   url: `${API_URL}/bp/products`,
-      // });
-      const response = await fakeApiGetProducts();
+      const response = await this.http.request<ProductDto[]>({
+        method: 'get',
+        headers: {
+          authorId: '10',
+        },
+        url: `${API_URL}/bp/products`,
+      });
       return ProductAdapter.ProductsDtoToEntity(response);
+    } catch (error) {
+      throw ErrorHandler.fetch(error);
+    }
+  };
+
+  addProduct = async (product: ProductEntity): Promise<void> => {
+    try {
+      const body = ProductAdapter.ProductEntityToDto(product);
+
+      await this.http.request<ProductDto[]>({
+        method: 'post',
+        headers: {
+          authorId: '10',
+        },
+        body,
+        url: `${API_URL}/bp/products`,
+      });
+    } catch (error) {
+      throw ErrorHandler.fetch(error);
+    }
+  };
+
+  verificationProduct = async (productID: string): Promise<boolean> => {
+    try {
+      const response = await this.http.request<boolean>({
+        method: 'get',
+        headers: {
+          authorId: '10',
+        },
+        params: {
+          id: productID,
+        },
+        url: `${API_URL}/bp/products/verification`,
+      });
+      return response;
     } catch (error) {
       throw ErrorHandler.fetch(error);
     }
