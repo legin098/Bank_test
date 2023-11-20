@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {ScrollView, Text, View} from 'react-native';
 import {
   Button,
@@ -15,12 +15,11 @@ import {formProductSchemeValidation as schemeValidation} from '../../validations
 import {PRODUCT_INITIAL_VALUES} from '../../constants';
 import {addOneYearToDate, formatDate} from '@src/core/utils';
 
-const Component = ({onSubmit, onNavigation}: Props) => {
-  const [dateRelease, setDateRelease] = useState<string>('');
-
+const Component = ({hasExistProduct = false, onSubmit, onVerify}: Props) => {
   const {
     control,
     handleSubmit,
+    setValue,
     reset,
     formState: {isValid, errors},
   } = useForm<ProductEntity>({
@@ -39,16 +38,22 @@ const Component = ({onSubmit, onNavigation}: Props) => {
         <Text style={styles.title}>Formulario de Registro</Text>
         <Controller
           control={control}
-          render={({field: {onChange, value}}) => (
+          render={({field: {onChange, onBlur, value}}) => (
             <InputText
               containerStyles={styles.ctnInput}
               value={value}
               label={'ID'}
               onChangeText={onChange}
-              {...(!!errors.id?.message && {
+              onBlur={() => {
+                !!value && onVerify(value);
+                onBlur();
+              }}
+              {...((!!errors.id?.message || hasExistProduct) && {
                 error: {
                   isVisible: true,
-                  label: errors.id?.message,
+                  label: hasExistProduct
+                    ? 'ID no válido!'
+                    : errors.id?.message || '',
                 },
               })}
             />
@@ -115,14 +120,14 @@ const Component = ({onSubmit, onNavigation}: Props) => {
         />
         <Controller
           control={control}
-          render={({field: {onChange, onBlur, value}}) => (
+          render={({field: {onChange, value}}) => (
             <InputDate
               containerStyles={styles.ctnInput}
               value={!!value ? formatDate(value, "dd'/'LL'/'yyyy") : ''}
               label={'Fecha Liberación'}
               onChange={value => {
-                setDateRelease(value);
                 onChange(value);
+                setValue('dateRevision', addOneYearToDate(value));
               }}
               {...(errors.dateRelease?.message && {
                 error: {
@@ -135,28 +140,33 @@ const Component = ({onSubmit, onNavigation}: Props) => {
           name="dateRelease"
           rules={{required: true}}
         />
-        <InputText
-          containerStyles={styles.ctnInput}
-          inputStyles={styles.disableInput}
-          value={addOneYearToDate(dateRelease)}
-          editable={false}
-          label={'Fecha Revisión'}
+        <Controller
+          control={control}
+          render={({field: {value}}) => (
+            <InputText
+              containerStyles={styles.ctnInput}
+              inputStyles={styles.disableInput}
+              value={!!value ? formatDate(value, "dd'/'LL'/'yyyy") : ''}
+              editable={false}
+              label={'Fecha Revisión'}
+            />
+          )}
+          name="dateRevision"
+          rules={{required: true}}
         />
 
         <Button
           text="Enviar"
           containerStyles={styles.btnSend}
-          disabled={!isValid}
+          disabled={!isValid || hasExistProduct}
           onPress={handleSubmit(onSubmit)}
         />
         <Button
           text="Reiniciar"
+          disabled={true}
           type="gray_light"
           containerStyles={styles.btnReset}
-          onPress={() => {
-            reset();
-            setDateRelease('');
-          }}
+          onPress={() => reset()}
         />
       </ScrollView>
     </View>

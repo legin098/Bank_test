@@ -1,26 +1,37 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Component from './Component';
 import {PropsPresenter as Props} from './models';
 import {ProductEntity} from '@src/products/domain/models';
-import {IErrorType} from '@src/common/presenter/models';
-import {INITIAL_STATE_ERROR} from '@src/core/constants';
 import {ErrorHandler} from '@src/core/utils';
+import {useAddProduct, useVerificationProduct} from '../../hooks';
 
 const Presenter = ({navigation}: Props) => {
-  const [error, setError] = useState<IErrorType>(INITIAL_STATE_ERROR);
+  const {mutateAsync: addProduct} = useAddProduct();
+  const {mutateAsync: verificationProduct, data: hasExistProduct} =
+    useVerificationProduct();
 
-  const handleOnSubmit = (data: ProductEntity) => {
+  const handleOnSubmit = async (data: ProductEntity) => {
     try {
-      console.log({data});
+      await addProduct(data);
+      navigation.navigate('Home');
     } catch (error) {
-      setError({isVisible: true, label: ErrorHandler.catch(error)[0]});
+      ErrorHandler.catch(error);
+    }
+  };
+
+  const hanleOnVerify = async (productID: string) => {
+    try {
+      await verificationProduct({productID});
+    } catch (error) {
+      ErrorHandler.catch(error);
     }
   };
 
   return (
     <Component
+      hasExistProduct={hasExistProduct}
+      onVerify={hanleOnVerify}
       onSubmit={handleOnSubmit}
-      onNavigation={(screen, params) => navigation.navigate(screen, params)}
     />
   );
 };
