@@ -41,7 +41,17 @@ export const addOneYearToDate = (date: string): string => {
 
   const currentDate = DateTime.fromISO(date);
   const addYear = currentDate.plus({years: 1});
-  const format = addYear.toFormat("dd'/'LL'/'yyyy");
+  const format = addYear.toFormat('yyyy-MM-dd');
 
   return format;
+};
+
+export const isFutureDate = (value: string): boolean => {
+  if (!value) return true;
+
+  const currentDate = DateTime.local().startOf('day');
+  const selectedDate = DateTime.fromISO(value).startOf('day');
+  const isValid = selectedDate.isValid && selectedDate >= currentDate;
+
+  return isValid;
 };
