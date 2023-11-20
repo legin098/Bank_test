@@ -8,6 +8,7 @@ const Stack = createStackNavigator<ProductStackParamList>();
 const Home = lazy(() => import('../pages/Home'));
 const Detail = lazy(() => import('../pages/Detail'));
 const Add = lazy(() => import('../pages/Add'));
+const Edit = lazy(() => import('../pages/Edit'));
 
 const ProductsNavigation = () => {
   return (
@@ -34,6 +35,13 @@ const ProductsNavigation = () => {
         {props => (
           <SuspendedView hasSafeArea>
             <Add {...props} />
+          </SuspendedView>
+        )}
+      </Stack.Screen>
+      <Stack.Screen name="Edit">
+        {props => (
+          <SuspendedView hasSafeArea>
+            <Edit {...props} />
           </SuspendedView>
         )}
       </Stack.Screen>
