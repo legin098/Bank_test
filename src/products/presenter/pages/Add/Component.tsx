@@ -15,7 +15,7 @@ import {formProductSchemeValidation as schemeValidation} from '../../validations
 import {PRODUCT_INITIAL_VALUES} from '../../constants';
 import {addOneYearToDate, formatDate} from '@src/core/utils';
 
-const Component = ({onNavigation}: Props) => {
+const Component = ({onSubmit, onNavigation}: Props) => {
   const [dateRelease, setDateRelease] = useState<string>('');
 
   const {
@@ -143,11 +143,20 @@ const Component = ({onNavigation}: Props) => {
           label={'Fecha Revisión'}
         />
 
-        <Button text="Enviar" containerStyles={styles.btnSend} />
+        <Button
+          text="Enviar"
+          containerStyles={styles.btnSend}
+          disabled={!isValid}
+          onPress={handleSubmit(onSubmit)}
+        />
         <Button
           text="Reiniciar"
           type="gray_light"
           containerStyles={styles.btnReset}
+          onPress={() => {
+            reset();
+            setDateRelease('');
+          }}
         />
       </ScrollView>
     </View>
