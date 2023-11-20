@@ -498,8 +498,6 @@ PODS:
   - RNGestureHandler (2.13.4):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
-  - RNLocalize (3.0.0):
-    - React-Core
   - RNScreens (3.27.0):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
@@ -575,7 +573,6 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
-  - RNLocalize (from `../node_modules/react-native-localize`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -684,8 +681,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-picker/picker"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
-  RNLocalize:
-    :path: "../node_modules/react-native-localize"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   Yoga:
@@ -748,7 +743,6 @@ SPEC CHECKSUMS:
   ReactCommon: 5f704096ccf7733b390f59043b6fa9cc180ee4f6
   RNCPicker: 529d564911e93598cc399b56cc0769ce3675f8c8
   RNGestureHandler: 6e46dde1f87e5f018a54fe5d40cd0e0b942b49ee
-  RNLocalize: 5944c97d2fe8150913a51ddd5eab4e23a82bd80d
   RNScreens: 3c2d122f5e08c192e254c510b212306da97d2581
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 4c3aa327e4a6a23eeacd71f61c81df1bcdf677d5

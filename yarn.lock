@@ -5836,11 +5836,6 @@ react-native-keyboard-aware-scroll-view@^0.9.5:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
 
-react-native-localize@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-localize/-/react-native-localize-3.0.0.tgz#41536e8aca8a148fd96d495d3d5cf710e25b2855"
-  integrity sha512-B8taYRLuLIYDzBTKIglA3K6ntjaEwbk6mwQ72ogZYl5ovM00NnpbiZ3sRq8KRVe/V1NGczxT33uVqG6BUWGWhg==
-
 react-native-mmkv@^2.11.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/react-native-mmkv/-/react-native-mmkv-2.11.0.tgz#51b9985f6a5c09fe9c16d8c1861cc2901856ace1"
