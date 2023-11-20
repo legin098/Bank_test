@@ -7,4 +7,5 @@ export type PropsPresenter = StackScreenProps<ProductStackParamList, 'Detail'>;
 export type PropsComponent = {
   testID?: string;
   product?: ProductEntity;
+  onDelete(productID: string): void;
 };

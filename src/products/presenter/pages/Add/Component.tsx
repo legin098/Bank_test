@@ -163,7 +163,6 @@ const Component = ({hasExistProduct = false, onSubmit, onVerify}: Props) => {
         />
         <Button
           text="Reiniciar"
-          disabled={true}
           type="gray_light"
           containerStyles={styles.btnReset}
           onPress={() => reset()}
