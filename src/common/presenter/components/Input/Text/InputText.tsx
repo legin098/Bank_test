@@ -30,7 +30,7 @@ const InputText = ({
         })}
         style={[
           styles.input,
-          inputStyles && inputStyles,
+          inputStyles,
           error.isVisible && styles.inputError,
         ]}
       />

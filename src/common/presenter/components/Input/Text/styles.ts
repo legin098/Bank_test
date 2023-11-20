@@ -10,9 +10,9 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   label: {
-    fontWeight: '100',
+    fontWeight: '500',
     fontSize: 14,
-    color: COLORS.common.gray,
+    color: COLORS.common.black,
     marginBottom: width * 0.02,
   },
   input: {
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     width: '100%',
     height: SIZE_HEIGHT,
-    borderRadius: 8,
+    borderRadius: 5,
     borderWidth: 1,
     borderColor: COLORS.common.gray,
   },
@@ -32,10 +32,5 @@ export const styles = StyleSheet.create({
   ctnError: {
     width: '100%',
     marginTop: 4,
-  },
-  error: {
-    fontWeight: '500',
-    fontSize: 14,
-    color: COLORS.common.red,
   },
 });

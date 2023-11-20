@@ -35,3 +35,13 @@ export const formatDate = (date: string, format: string): string => {
 
   return formatDate;
 };
+
+export const addOneYearToDate = (date: string): string => {
+  if (!date) return '';
+
+  const currentDate = DateTime.fromISO(date);
+  const addYear = currentDate.plus({years: 1});
+  const format = addYear.toFormat("dd'/'LL'/'yyyy");
+
+  return format;
+};
