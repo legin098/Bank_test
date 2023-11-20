@@ -1,36 +1,7 @@
 import {DateTime} from 'luxon';
-import {TIME_ZONE} from '../constants';
-
-export const convertDateUtcToLocal = (date: string): string => {
-  const verifyEmpty = !date;
-  const CURRENT_DATE_ISO = DateTime.now().setZone(TIME_ZONE).toISO() || '';
-
-  if (verifyEmpty) return CURRENT_DATE_ISO;
-
-  const utcDate = DateTime.fromISO(date, {zone: 'utc'});
-  const localDate = utcDate.setZone(TIME_ZONE);
-  const isoDate = localDate.toISO() || CURRENT_DATE_ISO;
-
-  return isoDate;
-};
-
-export const convertDateLocalToUtc = (
-  date: string,
-  format?: string,
-): string => {
-  const dateLocal = !!format
-    ? DateTime.fromFormat(date, format, {zone: TIME_ZONE})
-    : DateTime.fromISO(date, {zone: TIME_ZONE});
-
-  const CURRENT_DATE_ISO = DateTime.now().setZone(TIME_ZONE).toISO() || '';
-  const utcDate = dateLocal.toUTC();
-  const isoDate = utcDate.toISO() || CURRENT_DATE_ISO;
-
-  return isoDate;
-};
 
 export const formatDate = (date: string, format: string): string => {
-  const dateIso = DateTime.fromISO(date);
+  const dateIso = DateTime.fromISO(date, {zone: 'UTC'});
   const formatDate = dateIso.toFormat(format);
 
   return formatDate;
@@ -49,8 +20,8 @@ export const addOneYearToDate = (date: string): string => {
 export const isFutureDate = (value: string): boolean => {
   if (!value) return true;
 
-  const currentDate = DateTime.local().startOf('day');
-  const selectedDate = DateTime.fromISO(value).startOf('day');
+  const currentDate = DateTime.utc().startOf('day');
+  const selectedDate = DateTime.fromISO(value, {zone: 'UTC'}).startOf('day');
   const isValid = selectedDate.isValid && selectedDate >= currentDate;
 
   return isValid;
