@@ -1,3 +1,4 @@
+import {isFutureDate} from '@src/core/utils';
 import * as yup from 'yup';
 
 export const formProductSchemeValidation = yup.object().shape({
@@ -17,6 +18,9 @@ export const formProductSchemeValidation = yup.object().shape({
     .min(10, 'Minimo 10 caracteres!')
     .max(200, 'Maximo 200 caracteres!'),
   picture: yup.string().required('Este campo es requerido!'),
-  dateRelease: yup.string().required('Este campo es requerido!'),
+  dateRelease: yup
+    .string()
+    .required('Este campo es requerido!')
+    .test('is-future-date', 'La fecha debe ser en el futuro', isFutureDate),
   dateRevision: yup.string(),
 });
