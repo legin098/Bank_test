@@ -12,4 +12,7 @@ export class ProductUseCase {
 
   verificationProduct = async (productID: string): Promise<boolean> =>
     await this.repository.verificationProduct(productID);
+
+  deleteProduct = async (productID: string): Promise<void> =>
+    await this.repository.deleteProduct(productID);
 }
