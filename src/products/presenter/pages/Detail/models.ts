@@ -8,4 +8,5 @@ export type PropsComponent = {
   testID?: string;
   product?: ProductEntity;
   onDelete(productID: string): void;
+  onNavigation(screen: keyof ProductStackParamList, params?: any): void;
 };

@@ -18,7 +18,13 @@ const Presenter = ({navigation, route}: Props) => {
     }
   };
 
-  return <Component product={params} onDelete={handleOnDelete} />;
+  return (
+    <Component
+      product={params}
+      onDelete={handleOnDelete}
+      onNavigation={(screen, params) => navigation.navigate(screen, params)}
+    />
+  );
 };
 
 export default Presenter;

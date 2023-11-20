@@ -6,12 +6,21 @@ import {styles} from './styles';
 import {PRODUCT_INITIAL_VALUES} from '../../constants';
 import {formatDate} from '@src/core/utils';
 
-const Component = ({product = PRODUCT_INITIAL_VALUES, onDelete}: Props) => {
+const Component = ({
+  product = PRODUCT_INITIAL_VALUES,
+  onDelete,
+  onNavigation,
+}: Props) => {
   const dateRelease = formatDate(product.dateRelease, 'dd/MM/yyyy');
   const dateRevision = formatDate(product.dateRevision, 'dd/MM/yyyy');
 
   const [isVisibleModalDelete, setIsVisibleModalDelete] =
     useState<boolean>(false);
+
+  const handleOnDelete = (productID: string) => {
+    setIsVisibleModalDelete(false);
+    onDelete(productID);
+  };
 
   return (
     <Fragment>
@@ -19,7 +28,7 @@ const Component = ({product = PRODUCT_INITIAL_VALUES, onDelete}: Props) => {
         isVisible={isVisibleModalDelete}
         product={product.name}
         onClose={() => setIsVisibleModalDelete(false)}
-        onDelete={() => onDelete(product.id)}
+        onDelete={() => handleOnDelete(product.id)}
       />
       <View style={styles.container}>
         <Header />
@@ -56,7 +65,11 @@ const Component = ({product = PRODUCT_INITIAL_VALUES, onDelete}: Props) => {
           </View>
 
           <View style={styles.ctnButtons}>
-            <Button text="Editar" type="gray_light" />
+            <Button
+              text="Editar"
+              type="gray_light"
+              onPress={() => onNavigation('Edit', {...product})}
+            />
             <Button
               text="Eliminar"
               type="red"
