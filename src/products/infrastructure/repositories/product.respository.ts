@@ -58,4 +58,21 @@ export class ProductRepositoryImpl implements IProductRepository {
       throw ErrorHandler.fetch(error);
     }
   };
+
+  deleteProduct = async (productID: string): Promise<void> => {
+    try {
+      await this.http.request({
+        method: 'delete',
+        headers: {
+          authorId: '10',
+        },
+        params: {
+          id: productID,
+        },
+        url: `${API_URL}/bp/products`,
+      });
+    } catch (error) {
+      throw ErrorHandler.fetch(error);
+    }
+  };
 }
