@@ -6,19 +6,25 @@ import {styles} from './styles';
 const Logo = require('../../../../assets/images/BancoPichincha.png');
 const GoBack = require('../../../../assets/images/goBack.png');
 
-const HeaderHome = ({containerStyles, onPress}: Props) => {
+const Header = ({containerStyles, onPress}: Props) => {
   return (
-    <View style={[styles.container, containerStyles]}>
+    <View testID="container" style={[styles.container, containerStyles]}>
       {onPress && (
         <TouchableOpacity
+          testID="goBack"
           activeOpacity={0.9}
           style={styles.goBack}
           onPress={onPress}>
           <Image source={GoBack} resizeMode="contain" />
         </TouchableOpacity>
       )}
-      <Image source={Logo} resizeMode="contain" style={styles.image} />
+      <Image
+        testID="logoImg"
+        source={Logo}
+        resizeMode="contain"
+        style={styles.image}
+      />
     </View>
   );
 };
-export default HeaderHome;
+export default Header;
