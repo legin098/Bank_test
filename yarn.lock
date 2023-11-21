@@ -1920,10 +1920,10 @@
     "@tanstack/query-core" "4.36.1"
     use-sync-external-store "^1.2.0"
 
-"@testing-library/jest-native@^5.4.3":
-  version "5.4.3"
-  resolved "https://registry.yarnpkg.com/@testing-library/jest-native/-/jest-native-5.4.3.tgz#9334c68eaf45db9eb20d0876728cc5d7fc2c3ea2"
-  integrity sha512-/sSDGaOuE+PJ1Z9Kp4u7PQScSVVXGud59I/qsBFFJvIbcn4P6yYw6cBnBmbPF+X9aRIsTJRDl6gzw5ZkJNm66w==
+"@testing-library/jest-native@5.4.2":
+  version "5.4.2"
+  resolved "https://registry.yarnpkg.com/@testing-library/jest-native/-/jest-native-5.4.2.tgz#6b0c987cc57f8d900763e763025d00d26ccbc85f"
+  integrity sha512-Vo/CE1uvCVH1H8YPoOEXLXVsm+BjzSQTq35+wkri1fr0O5D+A2WZ+m3ni5g6f1OCzNKNGIAHmisBEWkDs1P1mw==
   dependencies:
     chalk "^4.1.2"
     jest-diff "^29.0.1"
@@ -1931,14 +1931,12 @@
     pretty-format "^29.0.3"
     redent "^3.0.0"
 
-"@testing-library/react-native@^12.4.0":
-  version "12.4.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/react-native/-/react-native-12.4.0.tgz#ebc71b15256753006c123dd574064cb10dc88ed7"
-  integrity sha512-FPc/0LPL+xoYxt10IUyYv19I9BRL6FtZ8EGzOvlyT7wXXARzryASQmz4pj2ZBtp5Xn43bYzpbNZO8kIWNv0rLA==
+"@testing-library/react-native@12.1.2":
+  version "12.1.2"
+  resolved "https://registry.yarnpkg.com/@testing-library/react-native/-/react-native-12.1.2.tgz#1935affe1106aeddf0087dff31a6d7414917c098"
+  integrity sha512-5rQMQpbSQAuJc4TxjTt1IoeT1a5eVXaa61hf/YcjV2QtGqCoyhuW8DvhTowrL7y2Ds4NzuYBmbVxjNPR6GIblw==
   dependencies:
-    jest-matcher-utils "^29.7.0"
-    pretty-format "^29.7.0"
-    redent "^3.0.0"
+    pretty-format "^29.0.0"
 
 "@tsconfig/react-native@^3.0.0":
   version "3.0.2"
