@@ -2,6 +2,8 @@
  * @format
  */
 
+jest.mock('@tanstack/react-query');
+
 import 'react-native';
 import React from 'react';
 import App from '@src/App';
