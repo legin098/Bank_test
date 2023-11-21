@@ -21,7 +21,7 @@ const Component = ({product = PRODUCT_INITIAL_VALUES, onSubmit}: Props) => {
     handleSubmit,
     setValue,
     reset,
-    formState: {isValid, errors},
+    formState: {errors},
   } = useForm<ProductEntity>({
     resolver: yupResolver(schemeValidation) as any,
     mode: 'onChange',
@@ -168,7 +168,6 @@ const Component = ({product = PRODUCT_INITIAL_VALUES, onSubmit}: Props) => {
         <Button
           text="Enviar"
           containerStyles={styles.btnSend}
-          disabled={!isValid}
           onPress={handleSubmit(onSubmit)}
         />
         <Button

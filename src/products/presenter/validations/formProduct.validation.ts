@@ -21,6 +21,10 @@ export const formProductSchemeValidation = yup.object().shape({
   dateRelease: yup
     .string()
     .required('Este campo es requerido!')
-    .test('is-future-date', 'La fecha debe ser en el futuro', isFutureDate),
-  dateRevision: yup.string(),
+    .test(
+      'is-future-date',
+      'La fecha debe ser igual o mayor a la actual!',
+      isFutureDate,
+    ),
+  dateRevision: yup.string().required('Este campo es requerido!'),
 });

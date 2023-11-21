@@ -149,6 +149,12 @@ const Component = ({hasExistProduct = false, onSubmit, onVerify}: Props) => {
               value={!!value ? formatDate(value, "dd'/'LL'/'yyyy") : ''}
               editable={false}
               label={'Fecha Revisión'}
+              {...(errors.dateRevision?.message && {
+                error: {
+                  isVisible: true,
+                  label: errors.dateRevision?.message,
+                },
+              })}
             />
           )}
           name="dateRevision"
@@ -158,7 +164,7 @@ const Component = ({hasExistProduct = false, onSubmit, onVerify}: Props) => {
         <Button
           text="Enviar"
           containerStyles={styles.btnSend}
-          disabled={!isValid || hasExistProduct}
+          disabled={hasExistProduct}
           onPress={handleSubmit(onSubmit)}
         />
         <Button
