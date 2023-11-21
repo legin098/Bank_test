@@ -33,6 +33,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: '6%',
     paddingVertical: width * 0.05,
   },
+  btnClose: {},
   close: {
     width: width * 0.035,
     height: width * 0.035,
@@ -41,19 +42,22 @@ export const styles = StyleSheet.create({
   ctnText: {
     width: '100%',
     paddingHorizontal: '6%',
-    paddingVertical: width * 0.05,
+    paddingTop: width * 0.02,
   },
   text: {
+    flex: 1,
     textAlign: 'center',
     fontSize: 15,
+    paddingBottom: width * 0.07,
   },
   ctnButtons: {
+    height: '52%',
     width: '100%',
     paddingHorizontal: '6%',
     borderTopColor: COLORS.common.gray_light,
     borderTopWidth: 1,
     gap: width * 0.04,
-    paddingBottom: width * 0.07,
-    paddingTop: width * 0.05,
+    paddingBottom: width * 0.04,
+    paddingTop: width * 0.02,
   },
 });
