@@ -5,7 +5,11 @@ import {COLORS} from '@common/presenter/theme';
 
 const PageLoading = () => (
   <SafeAreaView style={styles.container}>
-    <ActivityIndicator size="large" color={COLORS.common.black} />
+    <ActivityIndicator
+      testID="activity_indicator"
+      size="large"
+      color={COLORS.common.black}
+    />
     <Text>{'The view is charging...'}</Text>
   </SafeAreaView>
 );

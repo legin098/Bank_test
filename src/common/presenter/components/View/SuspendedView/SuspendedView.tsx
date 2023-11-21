@@ -1,3 +1,4 @@
+import React from 'react';
 import {Suspense} from 'react';
 import {SafeAreaView, View} from 'react-native';
 import PageLoading from './PageLoading';
@@ -11,11 +12,15 @@ const SuspendedView = ({
 }: Props) => (
   <Suspense fallback={<PageLoading />}>
     {hasSafeArea ? (
-      <SafeAreaView style={[styles.container, containerStyles]}>
+      <SafeAreaView
+        testID="safeAreaView"
+        style={[styles.container, containerStyles]}>
         {children}
       </SafeAreaView>
     ) : (
-      <View style={[styles.container, containerStyles]}>{children}</View>
+      <View testID="container" style={[styles.container, containerStyles]}>
+        {children}
+      </View>
     )}
   </Suspense>
 );
