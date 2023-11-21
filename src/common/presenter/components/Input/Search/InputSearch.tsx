@@ -12,8 +12,9 @@ const InputSearch = ({
   onBlur,
 }: Props) => {
   return (
-    <View style={[styles.container, containerStyles && containerStyles]}>
+    <View testID="container" style={[styles.container, containerStyles]}>
       <TextInput
+        testID="input"
         style={styles.input}
         {...(placeholder && {
           placeholder: placeholder || '',
