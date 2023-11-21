@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import Navigation from '@common/presenter/navigation';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {LogBox} from 'react-native';
+import {ModalLoadingProvider} from './common/presenter/context';
 
 const queryClient = new QueryClient();
 
@@ -12,9 +13,11 @@ const App = () => {
   ]);
   return (
     <QueryClientProvider client={queryClient}>
-      <NavigationContainer>
-        <Navigation />
-      </NavigationContainer>
+      <ModalLoadingProvider>
+        <NavigationContainer>
+          <Navigation />
+        </NavigationContainer>
+      </ModalLoadingProvider>
     </QueryClientProvider>
   );
 };
