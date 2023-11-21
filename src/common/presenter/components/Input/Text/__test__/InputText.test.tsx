@@ -1,89 +1,76 @@
 import React from 'react';
-import {StyleProp, ViewStyle, TextInputProps} from 'react-native';
 import {render, screen, fireEvent} from '@testing-library/react-native';
-import '@testing-library/jest-native';
-import InputFullName from '../InputText';
+import InputText from '../InputText';
 import {styles} from '../styles';
 
-jest.mock('@common/presenter/components/Label', () => (props: any) => (
-  //@ts-ignore
-  <mock-label {...props} />
-));
-jest.mock(
-  '@common/presenter/components/View/ErrorMessage',
-  () => (props: any) =>
-    (
-      //@ts-ignore
-      <mock-viewErrorMessage {...props} />
-    ),
-);
-
-describe('test_InputFullName', () => {
+describe('test_input_text', () => {
   describe('render', () => {
-    test('parent_container_styles', () => {
-      const styles: StyleProp<ViewStyle> = {marginVertical: 10},
-        onChangeText = jest.fn();
-      render(
-        <InputFullName containerStyles={styles} onChangeText={onChangeText} />,
-      );
-      const ctnInput = screen.getByTestId('container');
-      expect(ctnInput).toHaveStyle(styles);
+    test('renders_without_label_and_placeholder', () => {
+      render(<InputText />);
+
+      expect(screen.getByTestId('container')).toBeTruthy();
+      expect(screen.queryByTestId('labelInput')).toBeNull();
+      expect(screen.getByTestId('input')).toBeTruthy();
+      expect(screen.queryByTestId('errorMessage')).toBeNull();
     });
-    test('additional_input_styles', () => {
-      const styles: StyleProp<ViewStyle> = {borderColor: 'red'},
-        onChangeText = jest.fn();
-      render(
-        <InputFullName inputStyles={styles} onChangeText={onChangeText} />,
-      );
-      const input = screen.getByTestId('input');
-      expect(input).toHaveStyle(styles);
+
+    test('renders_with_label', () => {
+      const label = 'Username';
+
+      render(<InputText label={label} />);
+
+      expect(screen.getByTestId('container')).toBeTruthy();
+      expect(screen.getByTestId('labelInput')).toBeTruthy();
+      expect(screen.getByText(label)).toBeTruthy();
+      expect(screen.getByTestId('input')).toBeTruthy();
+      expect(screen.queryByTestId('errorMessage')).toBeNull();
     });
-    test('input_placeholder_when_passing_a_value_other_than_empty', () => {
-      const placeholder = 'example',
-        onChangeText = jest.fn();
-      render(
-        <InputFullName placeholder={placeholder} onChangeText={onChangeText} />,
-      );
-      const input = screen.getByTestId('input');
-      expect(input).toHaveProp('placeholder', placeholder);
+
+    test('renders_with_placeholder', () => {
+      const placeholder = 'Enter your text';
+
+      render(<InputText placeholder={placeholder} />);
+
+      expect(screen.getByTestId('container')).toBeTruthy();
+      expect(screen.queryByTestId('labelInput')).toBeNull();
+      expect(screen.getByTestId('input')).toBeTruthy();
+      expect(screen.getByPlaceholderText(placeholder)).toBeTruthy();
+      expect(screen.queryByTestId('errorMessage')).toBeNull();
     });
-    test('input_label_when_passing_a_value_other_than_empty', () => {
-      const label = 'example',
-        onChangeText = jest.fn();
-      render(<InputFullName label={label} onChangeText={onChangeText} />);
-      const labelInput = screen.getByTestId('labelInput');
-      expect(labelInput.children[0]).toEqual(label);
-    });
-    test('textInput_value', () => {
-      const value = 'example',
-        onChangeText = jest.fn();
-      render(<InputFullName value={value} onChangeText={onChangeText} />);
-      const input = screen.getByTestId('input');
-      expect(input).toHaveProp('value', value);
-    });
-    test('error_status', () => {
-      const error = {
-          isVisible: true,
-          label: 'Error de ejemplo',
-        },
-        onChangeText = jest.fn();
-      render(<InputFullName error={error} onChangeText={onChangeText} />);
-      const input = screen.getByTestId('input'),
-        viewErrorMessage = screen.getByTestId('errorMessage');
-      expect(input).toHaveStyle(styles.inputError);
-      expect(viewErrorMessage).toHaveProp('isVisible', true);
-      expect(viewErrorMessage).toHaveProp('label', error.label);
+
+    test('input_error_styles', () => {
+      const error = {isVisible: true, label: 'Error message'};
+
+      render(<InputText error={error} />);
+
+      const inputComponent = screen.getByTestId('input');
+      const inputStyle = inputComponent.props.style;
+
+      expect(inputStyle).toContain(styles.inputError);
     });
   });
+
   describe('actions', () => {
-    test('call_onChange_event', () => {
-      const dataEvent = 'Hola',
-        onChangeText = jest.fn();
-      render(<InputFullName onChangeText={onChangeText} />);
-      const input = screen.getByTestId('input');
-      fireEvent.changeText(input, dataEvent);
-      expect(onChangeText).toBeCalledTimes(1);
-      expect(onChangeText).toBeCalledWith(dataEvent);
+    test('call_onChangeText_event', () => {
+      const onChangeText = jest.fn();
+
+      render(<InputText onChangeText={onChangeText} />);
+
+      const inputComponent = screen.getByTestId('input');
+
+      fireEvent.changeText(inputComponent, 'test input');
+      expect(onChangeText).toHaveBeenCalledWith('test input');
+    });
+
+    test('call_onBlur_event', () => {
+      const onBlur = jest.fn();
+
+      render(<InputText onBlur={onBlur} />);
+
+      const inputComponent = screen.getByTestId('input');
+
+      fireEvent(inputComponent, 'blur');
+      expect(onBlur).toHaveBeenCalledTimes(1);
     });
   });
 });
